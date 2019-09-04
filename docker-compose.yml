@@ -1,0 +1,59 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./docker/app
+      dockerfile: Dockerfile
+    image: shippingdocker/app:latest
+    networks:
+      - appnet
+    volumes:
+      - .:/var/www/html
+    ports:
+      - ${DOCKER_APP_PORT-80}:80
+    working_dir: /var/www/html
+  node:
+    build:
+      context: ./docker/node
+      dockerfile: Dockerfile
+    image: shippingdocker/node:latest
+    networks:
+      - appnet
+    volumes:
+      - .:/app-src
+    working_dir: /app-src
+    command: "echo node started"
+  cache:
+    image: redis:alpine
+    networks:
+      - appnet
+    volumes:
+      - cachedata:/data
+  db:
+    image: mariadb:10.2
+    networks:
+      - appnet
+    ports:
+      - ${DOCKER_DB_PORT-3306}:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+    volumes:
+      - dbdata:/var/lib/mysql
+    maildev:
+      image: djfarrelly/maildev
+      networks:
+        - appnet
+      ports:
+        - ${DOCKER_MAILDEV_SMTP_PORT-1025}:25
+        - ${DOCKER_MAILDEV_WEB_PORT-1080}:80
+networks:
+  appnet:
+    driver: bridge
+volumes:
+  dbdata:
+    driver: local
+  cachedata:
+    driver: local
