@@ -42,13 +42,13 @@ services:
       MYSQL_PASSWORD: secret
     volumes:
       - dbdata:/var/lib/mysql
-    maildev:
-      image: djfarrelly/maildev
-      networks:
-        - appnet
-      ports:
-        - ${DOCKER_MAILDEV_SMTP_PORT-1025}:25
-        - ${DOCKER_MAILDEV_WEB_PORT-1080}:80
+  maildev:
+    image: djfarrelly/maildev
+    networks:
+      - appnet
+    ports:
+      - ${DOCKER_MAILDEV_SMTP_PORT-1025}:25
+      - ${DOCKER_MAILDEV_WEB_PORT-1080}:80
 networks:
   appnet:
     driver: bridge
