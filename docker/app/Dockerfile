@@ -30,7 +30,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 RUN composer global require laravel/installer \
-    && echo "SET PATH=\$PATH:\$HOME/.composer/vendor/bin" >> /root/.bash_profile
+    && echo "export PATH=\$PATH:\$HOME/.composer/vendor/bin" >> /root/.bashrc
 
 ADD default /etc/nginx/sites-available/default
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
