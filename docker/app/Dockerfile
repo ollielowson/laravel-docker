@@ -36,6 +36,7 @@ ADD default /etc/nginx/sites-available/default
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD php-fpm.conf /etc/php/7.2/fpm/php-fpm.conf
 ADD start-container.sh /usr/bin/start-container
+ADD bash_aliases.sh /root/.bash_aliases
 RUN chmod +x /usr/bin/start-container
 ADD xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
 

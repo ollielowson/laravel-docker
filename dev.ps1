@@ -12,6 +12,11 @@ if ( $args.count -gt 0 ) {
             break;
         }
 
+        "bash" {
+            docker-compose exec app bash $commandargs
+            break;
+        }
+
         "artisan" {
             docker-compose exec app php artisan $commandargs
             break;
