@@ -12,6 +12,13 @@ if ( $args.count -gt 0 ) {
             break;
         }
 
+        "rebuild" {
+            docker-compose down;
+            docker-compose build;
+            docker-compose up -d;
+            break;
+        }
+
         "bash" {
             docker-compose exec app bash $commandargs
             break;
@@ -44,6 +51,11 @@ if ( $args.count -gt 0 ) {
 
         "gulp" {
             docker-compose run --rm node ./node_modules/.bin/gulp $commandargs
+            break;
+        }
+
+        "tailwind" {
+            docker-compose run --rm node ./node_modules/.bin/tailwind $commandargs
             break;
         }
 

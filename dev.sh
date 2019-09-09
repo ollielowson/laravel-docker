@@ -8,6 +8,11 @@ if [ $# -gt 0 ]; then
         elif [ "$1" == "stop" ]; then
             docker-compose down;
         
+        elif [ "$1" == "rebuild" ]; then
+            docker-compose down;
+            docker-compose build;
+            docker-compose up -d;
+
         elif [ "$1" == "bash" ]; then
             docker-compose exec app bash "$@";
         
@@ -32,6 +37,9 @@ if [ $# -gt 0 ]; then
 
         elif [ "$1" == "gulp" ]; then
             docker-compose run --rm node ./node_modules/.bin/gulp "$@";
+
+        elif [ "$1" == "tailwind" ]; then
+            docker-compose run --rm node ./node_modules/.bin/tailwind "$@";
 
         else
             docker-compose "$@"
