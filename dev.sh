@@ -22,7 +22,9 @@ if [ $# -gt 0 ]; then
 
         elif [ "$1" == "composer" ]; then
             docker-compose exec app composer "$@";
-        
+
+        elif [ "$1" == "laravel" ]; then
+            docker-compose exec app laravel "$@";
 
         elif [ "$1" == "phpunit" ]; then
             docker-compose exec app ./vendor/bin/phpunit "$@";

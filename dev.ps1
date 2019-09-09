@@ -34,6 +34,10 @@ if ( $args.count -gt 0 ) {
             break;
         }
 
+        "laravel" {
+            docker-compose exec app laravel $commandargs
+        }
+
         "phpunit" {
             docker-compose exec app ./vendor/bin/phpunit $commandargs
             break;
