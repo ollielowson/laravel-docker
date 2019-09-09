@@ -18,13 +18,12 @@ if [ $# -gt 0 ]; then
         
         elif [ "$1" == "artisan" ]; then
             docker-compose exec app php artisan "$@";
-        
 
         elif [ "$1" == "composer" ]; then
             docker-compose exec app composer "$@";
 
         elif [ "$1" == "laravel" ]; then
-            docker-compose exec app laravel "$@";
+            docker-compose exec app bash -c "\$HOME/.composer/vendor/bin/laravel \"$@\"";
 
         elif [ "$1" == "phpunit" ]; then
             docker-compose exec app ./vendor/bin/phpunit "$@";

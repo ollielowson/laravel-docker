@@ -35,7 +35,7 @@ if ( $args.count -gt 0 ) {
         }
 
         "laravel" {
-            docker-compose exec app laravel $commandargs
+            docker-compose exec app bash -c "`$HOME/.composer/vendor/bin/laravel ${commandargs}"
         }
 
         "phpunit" {
