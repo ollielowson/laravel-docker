@@ -48,9 +48,9 @@ services:
       - appnet
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD-secret}
-        MYSQL_DATABASE: ${DB_DATABASE-homestead}
-        MYSQL_USER: ${DB_USERNAME-homestead}
-        MYSQL_PASSWORD: ${DB_PASSWORD-secret}
+      MYSQL_DATABASE: ${DB_DATABASE-homestead}
+      MYSQL_USER: ${DB_USERNAME-homestead}
+      MYSQL_PASSWORD: ${DB_PASSWORD-secret}
     tmpfs:
       - /var/lib/mysql
   maildev:
