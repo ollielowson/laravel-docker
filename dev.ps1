@@ -29,6 +29,11 @@ if ( $args.count -gt 0 ) {
             break;
         }
 
+        "ide-regen" {
+            docker-compose exec app bash -c "php artisan clear-compiled && php artisan ide-helper:generate";
+            break;
+        }
+
         "composer" {
             docker-compose exec app composer $commandargs
             break;

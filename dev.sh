@@ -19,6 +19,9 @@ if [ $# -gt 0 ]; then
         elif [ "$1" == "artisan" ]; then
             docker-compose exec app php artisan "$@";
 
+        elif [ "$1" == "ide-regen" ]; then
+            docker-compose exec app bash -c "php artisan clear-compiled && php artisan ide-helper:generate";
+
         elif [ "$1" == "composer" ]; then
             docker-compose exec app composer "$@";
 
