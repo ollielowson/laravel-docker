@@ -13,6 +13,9 @@ if [ $# -gt 0 ]; then
             docker-compose build;
             docker-compose up -d;
 
+        elif [ "$1" == "stop-all" ]; then
+            docker container stop $(docker ps -q);
+
         elif [ "$1" == "bash" ]; then
             docker-compose exec app bash "$@";
         
@@ -27,6 +30,11 @@ if [ $# -gt 0 ]; then
 
         elif [ "$1" == "laravel" ]; then
             docker-compose exec app bash -c "\$HOME/.composer/vendor/bin/laravel \"$@\"";
+
+        elif [ "$1" == "lumen-new" ]; then
+            docker-compose exec app bash -c "`$HOME/.composer/vendor/bin/lumen new ./lumen";
+            mv ./lumen/* ./;
+            rm -r ./lumen;
 
         elif [ "$1" == "phpunit" ]; then
             docker-compose exec app ./vendor/bin/phpunit "$@";

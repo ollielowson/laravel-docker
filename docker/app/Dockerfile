@@ -30,6 +30,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 RUN composer global require laravel/installer \
+    && composer global require laravel/lumen-installer \
     && echo "export PATH=\$PATH:\$HOME/.composer/vendor/bin" >> /root/.bashrc
 
 ADD default /etc/nginx/sites-available/default

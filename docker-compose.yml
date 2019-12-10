@@ -4,7 +4,7 @@ services:
     build:
       context: ./docker/app
       dockerfile: Dockerfile
-    image: ollielowson/laravel-docker/app:latest
+    image: ${DOCKER_APP_PREFIX-laravel-docker}/app:latest
     networks:
       - appnet
     volumes:
@@ -16,7 +16,7 @@ services:
     build:
       context: ./docker/node
       dockerfile: Dockerfile
-    image: ollielowson/laravel-docker/node:latest
+    image: ${DOCKER_APP_PREFIX-laravel-docker}/node:latest
     networks:
       - appnet
     volumes:

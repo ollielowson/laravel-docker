@@ -12,6 +12,11 @@ if ( $args.count -gt 0 ) {
             break;
         }
 
+        "stop-all" {
+            docker container stop $(docker ps -q);
+            break;
+        }
+
         "rebuild" {
             docker-compose down;
             docker-compose build;
@@ -41,6 +46,14 @@ if ( $args.count -gt 0 ) {
 
         "laravel" {
             docker-compose exec app bash -c "`$HOME/.composer/vendor/bin/laravel ${commandargs}"
+            break;
+        }
+
+        "lumen-new" {
+            docker-compose exec app bash -c "`$HOME/.composer/vendor/bin/lumen new ./lumen";
+            mv .\lumen\* .\;
+            rmdir .\lumen;
+            break;
         }
 
         "phpunit" {
